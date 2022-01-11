@@ -86,7 +86,7 @@ class Services extends CI_Controller{
         $date = date('Y-m-d');
         $month = date('m');
 
-        if($this->session->userdata('sess_role_id') == 1){
+        if($this->session->userdata('sess_role_id')){
             $id_ar = $this->session->userdata('sess_user_id');
 
             $getNotCalled = $this->db->query("SELECT
@@ -130,14 +130,14 @@ class Services extends CI_Controller{
                                         ms_status_call.need_follow_up,
                                         ms_provinsi.provinsi,
                                         ms_kab_kota.kab_kota
+                                        -- ms_kab_kota.kab_kota
                                         FROM
                                             tb_daily_call 
                                         INNER JOIN ms_anggota ON tb_daily_call.id_anggota = ms_anggota.id
                                         INNER JOIN ms_status_call ON tb_daily_call.status_call = ms_status_call.id
-                                        INNER JOIN ms_provinsi ON ms_anggota.id_prov = ms_provinsi.id
-                                        LEFT JOIN ms_kab_kota ON ms_provinsi.id = ms_kab_kota.id_prov
-                                        WHERE tb_daily_call.id
-                                        -- AND tb_daily_call.follow_up_on = '$date'
+                                        INNER JOIN ms_provinsi ON ms_anggota.id_prov = ms_provinsi.id                                        
+			                            LEFT JOIN ms_kab_kota ON ms_anggota.id_kab = ms_kab_kota.id
+                                        WHERE tb_daily_call.id 
                                         ORDER BY tb_daily_call.id_anggota DESC");
             $follow_up_today = $this->db->query("SELECT
                                         ms_anggota.id,

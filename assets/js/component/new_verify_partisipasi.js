@@ -38,7 +38,7 @@ const VERIFY_PARTISIPASI_NEW = {
             var v = this;
             $.ajax({
                 type : "GET",
-                url : BASE_URL+"api/get_verif_partisipasi_tanggal",
+                url : BASE_URL+"api/get_tanggal",
                 data : {
                     unique_id : v.unique_id
                 },

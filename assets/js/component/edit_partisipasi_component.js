@@ -3,7 +3,13 @@ const EDIT_PARTISIPASI = {
 		return {
             id_partisipasi : 0,
             id_anggota : 0,
-            detail : []
+            detail : [],
+            
+            temp_file : {
+                file : null,
+                nominal : 0,
+                tanggal_setor : ""
+            },
 		}
 	},
 	created : function(){
@@ -100,31 +106,26 @@ const EDIT_PARTISIPASI = {
                             <input type="text" class="form-control" v-model="detail.NAMA_ANGGOTA" readonly>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label>Provinsi</label>
                             <input type="text" class="form-control" v-model="detail.provinsi" readonly>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label>Kabupaten / Kota</label>
                             <input type="text" class="form-control" v-model="detail.kab_kota" readonly>
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label>Bulan</label>
-                            <input type="text" class="form-control" v-model="detail.bulan" readonly>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
+                   
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label>Tahun</label>
                             <input type="text" class="form-control" v-model="detail.tahun" readonly>
                         </div>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label>Tanggal Setor</label>
                             <input type="date" class="form-control" v-model="detail.tanggal_setor">
@@ -133,7 +134,7 @@ const EDIT_PARTISIPASI = {
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label>Jumlah Dana</label>
                             <input type="number" min="0" step="1" class="form-control" v-model="detail.dana_partisipasi">

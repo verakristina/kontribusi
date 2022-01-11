@@ -43,7 +43,7 @@ const DAILY_CALLS = {
 			var v = this;
 			if(resp.code == 200){
 				v.$set(v, "userdata", resp.data);
-				if(v.userdata.sess_role_id == 1){
+				if(v.userdata.sess_role_id){
 					v.$root.get_prov(v.getProvCallback);
 				}else{
 					v.$root.get_prov_by_user(v.userdata.sess_user_id, v.getProvCallback);
@@ -120,7 +120,7 @@ const DAILY_CALLS = {
 					</li>
 				</ul>
 				<div class="tab-content tab-space">
-					<div class="tab-pane" id="link1" aria-expanded="true">
+					<div class="tab-pane active" id="link3" aria-expanded="false">
 						<div class="clearfix">
 							<div class="pull-left">
 								<h4 class="p-0">{{ dataList.date }}</h4>
@@ -137,87 +137,6 @@ const DAILY_CALLS = {
 								<router-link class="btn btn-primary btn-sm" :to="{ path : '/manual-call' }">
 									<i class="fa fa-plus"></i>
 								</router-link>
-							</div>
-						</div>
-						<table class="table table-bordered table-striped table-hover datatable-1">
-							<thead>
-								<tr>
-									<th class="text-center" width="50px">No</th>
-									<th class="text-center" width="150px">Nama Dewan</th>
-									<th class="text-center" width="150px">Provinsi</th>
-									<th class="text-center" width="150px">Kab. / Kota</th>
-									<th class="text-center" width="100px">Status</th>
-									<th class="text-center">Noted</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr v-for="(item, index) in list.not_called">
-									<td class="text-center">{{ index+1 }}</td>
-									<td>{{ item.nama_anggota }}</td>
-									<td>{{ item.provinsi }}</td>
-									<td>{{ item.kab_kota }}</td>
-									<td class="text-center">
-										<div class="badge badge-danger" v-if="item.need_follow_up == 1">
-											{{ item.status_call }}
-										</div>
-										<div class="badge badge-warning" v-else-if="item.need_follow_up == 2">
-											{{ item.status_call }}
-										</div>
-										<div class="badge badge-success" v-else>
-											{{ item.status_call }}
-										</div>
-									</td>
-									<td class="text-left">{{ item.note }}</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<div class="tab-pane" id="link2" aria-expanded="false">
-						<table class="table table-bordered table-striped table-hover datatable-2">
-							<thead>
-								<tr>
-									<th class="text-center">No</th>
-									<th class="text-center">Nama Dewan</th>
-									<th class="text-center">Provsinsi</th>
-									<th class="text-center">Kab. / Kota</th>
-									<th class="text-center">Status</th>
-									<th class="text-center">Noted</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr v-for="(item, index) in list.called">
-									<td class="text-center">{{ index+1 }}</td>
-									<td>{{ item.nama_anggota }}</td>
-									<td>{{ item.provinsi }}</td>
-									<td>{{ item.kab_kota }}</td>
-									<td class="text-center">
-										<div class="badge badge-danger" v-if="item.need_follow_up == 1">
-											{{ item.status_call }}
-										</div>
-										<div class="badge badge-success" v-else-if="item.need_follow_up == 2">
-											{{ item.status_call }}
-										</div>
-										<div class="badge badge-warning" v-else>
-											{{ item.status_call }}
-										</div>
-									</td>
-									<td>{{ item.note }}</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-					<div class="tab-pane active" id="link3" aria-expanded="false">
-						<div class="clearfix">
-							<div class="pull-left">
-								<h4 class="p-0">{{ dataList.date }}</h4>
-							</div>
-							<div class="pull-right">
-								<a :href="'./report/print_daily_calls_report?date='+dataList.date" target="__Blank" class="btn btn-primary btn-sm" v-if="userdata.sess_role_id == 1">
-									<i class="fa fa-print"></i> Cetak Report
-								</a>
-								<a :href="'./report/print_daily_calls_report?date='+dataList.date+'&id_user='+userdata.sess_user_id" target="__Blank" class="btn btn-primary btn-sm" v-else>
-									<i class="fa fa-print"></i> Cetak Report
-								</a>
 							</div>
 						</div>
 						<table class="table table-bordered table-striped table-hover datatable-3">
@@ -241,10 +160,10 @@ const DAILY_CALLS = {
 										<div class="badge badge-danger" v-if="item.need_follow_up == 1">
 											{{ item.status_call }}
 										</div>
-										<div class="badge badge-success" v-else-if="item.need_follow_up == 2">
+										<div class="badge badge-warning" v-else-if="item.need_follow_up == 2">
 											{{ item.status_call }}
 										</div>
-										<div class="badge badge-warning" v-else>
+										<div class="badge badge-success" v-else>
 											{{ item.status_call }}
 										</div>
 									</td>

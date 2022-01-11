@@ -282,7 +282,7 @@ const DASHBOARD_ADMIN = {
                                         </div>
                                         <div class="pull-right text-right" style="width: 30%">
                                             <span style="font-size: 12px">
-                                                {{ roundNumb(item.PERSEN_KOTA, 1) }} %
+                                                {{ roundNumb(item.PERSEN_KOTA, 1) }} % <br> {{ item.ANGGOTA_KOTA }} orang
                                             </span>
                                         </div>
                                     </td>

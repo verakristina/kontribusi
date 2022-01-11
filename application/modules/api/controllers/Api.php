@@ -1979,12 +1979,10 @@ class Api extends CI_Controller{
 						LEFT JOIN ms_kab_kota ON ms_kab_kota.id = tb_partisipasi.id_kab
 						WHERE
 							MONTH (
-								tb_partisipasi.tanggal_setor
-							) = ".$param['bulan']."
-						AND YEAR (
-							tb_partisipasi.tanggal_setor
-						) = ".$param['tahun']."
-						AND tb_partisipasi.tanggal_verifikasi IS NULL
+								tb_partisipasi.tanggal_setor) = ".$param['bulan']."
+						AND YEAR (tb_partisipasi.tanggal_setor) = ".$param['tahun']."
+						AND ((tb_partisipasi.tanggal_verifikasi) IS NULL
+						OR (tb_partisipasi.tanggal_verifikasi) = '0000-00-00')
 						ORDER BY
 							tb_partisipasi.tanggal_setor ASC");
 
@@ -2018,13 +2016,10 @@ class Api extends CI_Controller{
 						INNER JOIN ms_provinsi ON ms_provinsi.id = tb_partisipasi.id_prov
 						LEFT JOIN ms_kab_kota ON ms_kab_kota.id = tb_partisipasi.id_kab
 						WHERE
-							MONTH (
-								tb_partisipasi.tanggal_setor
-							) = ".$param['bulan']."
-						AND YEAR (
-							tb_partisipasi.tanggal_setor
-						) = ".$param['tahun']."
-						AND tb_partisipasi.tanggal_verifikasi IS NOT NULL
+							MONTH (tb_partisipasi.tanggal_setor) = ".$param['bulan']."
+						AND YEAR (tb_partisipasi.tanggal_setor) = ".$param['tahun']."
+						AND ((tb_partisipasi.tanggal_verifikasi) IS NULL
+						OR (tb_partisipasi.tanggal_verifikasi) != '0000-00-00')
 						ORDER BY
 							tb_partisipasi.tanggal_setor ASC");
 
