@@ -147,7 +147,7 @@ const DAILY_CALLS = {
 									<th class="text-center">Provinsi</th>
 									<th class="text-center">Kab. / Kota</th>
 									<th class="text-center">Status</th>
-									<th class="text-center">Noteds</th>
+									<th class="text-center">Noted</th>
 								</tr>
 							</thead>
 							<tbody>
